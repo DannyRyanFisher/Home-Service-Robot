@@ -80,7 +80,7 @@
       <elevation>0</elevation>
       <heading_deg>0</heading_deg>
     </spherical_coordinates>
-    <model name='Building3'>
+    <model name='Version2'>
       <pose frame=''>-18.0333 -14.7294 0 0 -0 0</pose>
       <link name='Wall_1'>
         <collision name='Wall_1_Collision'>
@@ -441,7 +441,7 @@
       <real_time>63 540958663</real_time>
       <wall_time>1533775669 97810698</wall_time>
       <iterations>63334</iterations>
-      <model name='Building3'>
+      <model name='Version2'>
         <pose frame=''>-2.89403 1.98486 0 0 -0 0</pose>
         <scale>1 1 1</scale>
         <link name='Wall_1'>

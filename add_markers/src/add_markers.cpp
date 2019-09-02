@@ -4,18 +4,18 @@
 
 
 
-ros::Publisher marker_pub;
+ros::Publisher markerPub;
 
 void waypointCallback(const std_msgs::String::ConstPtr& msg)
 {
   ROS_INFO("I heard: [%s]", msg->data.c_str());
   
   // Set our initial shape type to be a cube
-  uint32_t shape = visualization_msgs::Marker::CUBE;
+  uint32_t shape = visualization_msgs::Marker::CYLINDER;
 
 
   visualization_msgs::Marker marker;
-  // Set the frame ID and timestamp.  See the TF tutorials for information on these.
+  // Set the frame ID and timestamp.  
   marker.header.frame_id = "map";
   marker.header.stamp = ros::Time::now();
   
@@ -87,7 +87,7 @@ void waypointCallback(const std_msgs::String::ConstPtr& msg)
   }	
 
   // Publish the marker
-  while (marker_pub.getNumSubscribers() < 1)
+  while (markerPub.getNumSubscribers() < 1)
  {
         if (!ros::ok())
     	{
@@ -96,7 +96,7 @@ void waypointCallback(const std_msgs::String::ConstPtr& msg)
     	ROS_WARN_ONCE("Please create a subscriber to the marker");
     	     sleep(1);
   }
-  marker_pub.publish(marker);
+  markerPub.publish(marker);
   
 
 
@@ -110,7 +110,7 @@ int main( int argc, char** argv )
   ros::init(argc, argv, "add_markers");
   ros::NodeHandle n;
   ros::Rate r(1);
-  marker_pub = n.advertise<visualization_msgs::Marker>("visualization_marker", 1);
+  markerPub = n.advertise<visualization_msgs::Marker>("visualization_marker", 1);
 
   ros::init(argc, argv, "wp_listener");
   ros::NodeHandle w;
@@ -119,7 +119,7 @@ int main( int argc, char** argv )
   ros::spin();
 
   // Set our initial shape type to be a cube
-  uint32_t shape = visualization_msgs::Marker::CUBE;
+  uint32_t shape = visualization_msgs::Marker::CYLINDER;
 
   while (ros::ok())
   {
@@ -162,7 +162,7 @@ int main( int argc, char** argv )
     marker.lifetime = ros::Duration();
 
     // Publish the marker
-    while (marker_pub.getNumSubscribers() < 1)
+    while (markerPub.getNumSubscribers() < 1)
     {
       if (!ros::ok())
       {
@@ -171,7 +171,7 @@ int main( int argc, char** argv )
       ROS_WARN_ONCE("Please create a subscriber to the marker");
       sleep(1);
     }
-    marker_pub.publish(marker);
+    markerPub.publish(marker);
 
     // Cycle between different shapes
     switch (shape)

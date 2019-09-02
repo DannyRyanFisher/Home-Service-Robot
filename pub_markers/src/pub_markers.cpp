@@ -5,7 +5,7 @@
 int main(int argc, char** argv){
 
   // Initialize simple publisher node
-  ros::init(argc, argv, "pub_marker");
+  ros::init(argc, argv, "pubMarker");
   ros::NodeHandle n;
   ros::Publisher wp_pub = n.advertise<std_msgs::String>("waypoint", 10);
 
@@ -42,15 +42,6 @@ int main(int argc, char** argv){
   // Wait 5 seconds
   ros::Duration(5.0).sleep();  
   
-  /*/ add marker doesn't currently do anything with doneLoading messages
-  ss.str(std::string());
-  ss << "doneLoading";
-  msg.data = ss.str();
-  ROS_INFO("%s", msg.data.c_str());
-  wp_pub.publish(msg);
-  ros::spinOnce();
-  */
-
   // add marker doesn't currently do anything with doneLoading messages
   ss.str(std::string());
   ss << "dropOff";
@@ -60,13 +51,6 @@ int main(int argc, char** argv){
   ros::spinOnce();
   
   ros::Duration(0.5).sleep(); 
-  /*/ add marker adds a marker at the drop off when it gets the dropOff message
-  for (int i = 0; i < 3; i++){
-    ss.str(std::string());
-    ss << "dropOff";
-    msg.data = ss.str();
-    ROS_INFO("%s", msg.data.c_str());
-    wp_pub.publish(msg);
-  }*/
+  
   return 0;
 }
